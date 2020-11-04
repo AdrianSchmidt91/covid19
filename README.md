@@ -1,3 +1,6 @@
 # covid19
 
-Covid19 statistics for germany
+Simple Covid19 statistics for germany using React and Typescript.
+
+Step 1: npm install
+Step 2: npm start
