@@ -1,2 +1,3 @@
 # covid19
-Covid19 tracker for germany
+
+Covid19 statistics for germany
