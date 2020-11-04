@@ -1,3 +1,10 @@
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
-export default axios.create({});
+class API {
+  get = (url: string): Promise<AxiosResponse> => {
+    return axios.get(url);
+  };
+}
+
+const api = new API();
+export default api;

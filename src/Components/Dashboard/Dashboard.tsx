@@ -3,6 +3,7 @@ import { Diseases } from '../../Models/Diseases';
 import axios from 'axios';
 import Card from '../Card/Card';
 import './Dashboard.css';
+import api from '../../services/api';
 
 const Dashboard = () => {
   const [diseases, setDiseases] = useState<undefined | Diseases>(undefined);
@@ -12,7 +13,7 @@ const Dashboard = () => {
   }, []);
 
   const getDiseases = async () => {
-    const response = await axios(
+    const response = await api.get(
       'https://disease.sh/v3/covid-19/countries/germany'
     );
     setDiseases(response.data);
