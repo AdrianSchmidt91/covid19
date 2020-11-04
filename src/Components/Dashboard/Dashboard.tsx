@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Diseases } from '../../Models/Diseases';
-import axios from 'axios';
 import Card from '../Card/Card';
 import './Dashboard.css';
 import api from '../../services/api';
