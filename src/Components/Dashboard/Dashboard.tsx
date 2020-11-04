@@ -5,17 +5,20 @@ import './Dashboard.css';
 import api from '../../services/api';
 
 const Dashboard = () => {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [diseases, setDiseases] = useState<undefined | Diseases>(undefined);
 
   useEffect(() => {
     getDiseases();
   }, []);
 
-  const getDiseases = async () => {
+  const getDiseases = async (): Promise<void> => {
+    setIsLoading(true);
     const response = await api.get(
       'https://disease.sh/v3/covid-19/countries/germany'
     );
     setDiseases(response.data);
+    setIsLoading(false);
   };
 
   const getDate = (timestamp: number): string => {
@@ -26,33 +29,43 @@ const Dashboard = () => {
     <div className="content">
       <h1>Covid 19 Statistic - Germany</h1>
       <div className="card-overview">
-        <Card
-          title="Active Cases"
-          text={diseases?.active}
-          key={diseases?.active}
-        />
-        <Card
-          title="Recovered"
-          text={diseases?.recovered}
-          key={diseases?.recovered}
-        />
-        <Card title="Deaths" text={diseases?.deaths} key={diseases?.deaths} />
-        <Card title="Tests" text={diseases?.tests} key={diseases?.tests} />
-        <Card
-          title="Cases today"
-          text={diseases?.todayCases}
-          key={diseases?.todayCases}
-        />
-        <Card
-          title="Deaths today"
-          text={diseases?.todayDeaths}
-          key={diseases?.todayDeaths}
-        />
-        <Card
-          title="Updated"
-          text={diseases ? getDate(diseases?.updated) : ''}
-          key={diseases?.updated}
-        />
+        {isLoading ? (
+          '...Loading'
+        ) : (
+          <>
+            <Card
+              title="Active Cases"
+              text={diseases?.active}
+              key={diseases?.active}
+            />
+            <Card
+              title="Recovered"
+              text={diseases?.recovered}
+              key={diseases?.recovered}
+            />
+            <Card
+              title="Deaths"
+              text={diseases?.deaths}
+              key={diseases?.deaths}
+            />
+            <Card title="Tests" text={diseases?.tests} key={diseases?.tests} />
+            <Card
+              title="Cases today"
+              text={diseases?.todayCases}
+              key={diseases?.todayCases}
+            />
+            <Card
+              title="Deaths today"
+              text={diseases?.todayDeaths}
+              key={diseases?.todayDeaths}
+            />
+            <Card
+              title="Updated"
+              text={diseases ? getDate(diseases?.updated) : ''}
+              key={diseases?.updated}
+            />{' '}
+          </>
+        )}
       </div>
     </div>
   );
