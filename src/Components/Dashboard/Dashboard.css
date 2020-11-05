@@ -12,3 +12,18 @@
   justify-content: center;
   flex-wrap: wrap;
 }
+
+.menu > select {
+  width: 10rem;
+  height: 1.5rem;
+  border: 0;
+  background-color: #7a7000;
+  margin: 1rem;
+  text-align: center;
+  text-align-last: center;
+  -moz-text-align-last: center;
+}
+
+.menu > label {
+  color: black;
+}

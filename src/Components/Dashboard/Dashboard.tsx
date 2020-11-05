@@ -7,27 +7,46 @@ import api from '../../services/api';
 const Dashboard = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [diseases, setDiseases] = useState<undefined | Diseases>(undefined);
+  const [country, setCountry] = useState<string | undefined>('Germany');
 
   useEffect(() => {
-    getDiseases();
+    getDiseasesForCountry('Germany');
   }, []);
-
-  const getDiseases = async (): Promise<void> => {
-    setIsLoading(true);
-    const response = await api.get(
-      'https://disease.sh/v3/covid-19/countries/germany'
-    );
-    setDiseases(response.data);
-    setIsLoading(false);
-  };
 
   const getDate = (timestamp: number): string => {
     return new Date(timestamp).toLocaleString();
   };
 
+  const getDiseasesForCountry = async (country: string): Promise<void> => {
+    setIsLoading(true);
+    setCountry(country);
+    setDiseases(undefined);
+    country.toLowerCase();
+    const response = await api.get(
+      `https://disease.sh/v3/covid-19/countries/${country}`
+    );
+    setDiseases(response.data);
+    setIsLoading(false);
+  };
+
   return (
     <div className="content">
-      <h1>Covid 19 Statistic - Germany</h1>
+      <h1>Covid 19 Statistic - {country}</h1>
+      <div className="menu">
+        <label>Select a Country: </label>
+        <br />
+        <select
+          id="countries"
+          name="country"
+          onChange={(e) => getDiseasesForCountry(e.target.value)}
+        >
+          <option value="Germany">Germany</option>
+          <option value="Italia">Italia</option>
+          <option value="France">France</option>
+          <option value="Russia">Russia</option>
+          <option value="Poland">Poland</option>
+        </select>
+      </div>
       <div className="card-overview">
         {isLoading ? (
           '...Loading'
