@@ -1,6 +1,6 @@
 .content {
   text-align: center;
-  color: #7a7000;
+  color: #494949;
 }
 
 .content > h1 {
@@ -17,7 +17,19 @@
   width: 10rem;
   height: 1.5rem;
   border: 0;
-  background-color: #7a7000;
+  color: lightgray;
+  background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.15) 0%,
+      rgba(0, 0, 0, 0.15) 100%
+    ),
+    radial-gradient(
+        at top center,
+        rgba(116, 116, 116, 0.4) 10%,
+        rgba(0, 0, 0, 0.4) 120%
+      )
+      #989898;
+  background-blend-mode: multiply, multiply;
   margin: 1rem;
   text-align: center;
   text-align-last: center;
@@ -25,5 +37,16 @@
 }
 
 .menu > label {
+  color: black;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  margin-bottom: 1rem;
+  width: 100%;
+  color: white;
+  text-align: center;
   color: black;
 }

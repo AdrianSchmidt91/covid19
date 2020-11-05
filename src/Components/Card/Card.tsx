@@ -9,7 +9,7 @@ interface CardProps {
 const Card = (props: CardProps) => {
   return (
     <div className="card">
-      <b className="card-title">{props.title}</b>
+      <b className="card-title">{props.title}: </b>
       {props.text}
     </div>
   );

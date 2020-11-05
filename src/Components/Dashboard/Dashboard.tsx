@@ -86,6 +86,10 @@ const Dashboard = () => {
           </>
         )}
       </div>
+      <div className="footer">
+        Copyright by Adrian Schmidt // Data from{' '}
+        <a href="http://www.disease.sh">Disease</a>
+      </div>
     </div>
   );
 };
